@@ -9,15 +9,24 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "compose-prod": "docker-compose -f Docker/docker-compose.prod.yml up --build",
-    "compose-dev": "docker-compose -f Docker/docker-compose.dev.yml up --build"
+    "compose-dev": "docker-compose -f Docker/docker-compose.dev.yml up --build",
+    "eslint-fix": "./node_modules/.bin/eslint --fix ./index.js",
+    "eslint": "./node_modules/.bin/eslint ./index.jsc"
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "eslint": "^6.8.0",
     "express": "^4.17.1",
     "pg": "^7.14.0",
     "redis": "^2.8.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1"
   }
 }
