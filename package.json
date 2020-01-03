@@ -11,7 +11,7 @@
     "compose-prod": "docker-compose -f Docker/docker-compose.prod.yml up --build",
     "compose-dev": "docker-compose -f Docker/docker-compose.dev.yml up --build",
     "eslint-fix": "./node_modules/.bin/eslint --fix ./index.js",
-    "eslint": "./node_modules/.bin/eslint ./index.jsc"
+    "eslint": "./node_modules/.bin/eslint ./index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
