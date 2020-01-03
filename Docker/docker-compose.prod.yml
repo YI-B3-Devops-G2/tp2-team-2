@@ -3,9 +3,9 @@ version: '3.1'
 services:
   nodejs:
     build:
-      context: ../
-      dockerfile: Docker/nodejs/Dockerfile.dev
-    container_name: api
+      context: ../nodeproject
+      dockerfile: nodejs/Dockerfile.prod
+    container_name: devops_tp_nodejs
     environment:
       - NODE_ENV=production
       - PORT=3000
@@ -13,11 +13,10 @@ services:
       - DB_PASSWORD=azertyuiop01
       - DB_NAME=test
       - DB_HOST=devops_tp_postgres
-    volumes:
-      - ../:/home/node/app
+    ports:
+    - 3000:3000
     depends_on:
       - postgres
-      - redis
     networks:
       - sub_network_db
       - sub_network_node
@@ -39,8 +38,8 @@ services:
       - sub_network_db
   nginx:
     build:
-      context: ./nginx
-      dockerfile: Dockerfile
+      context: nginx
+      dockerfile: nginx/Dockerfile
     environment:
       - HOSTNAME=devops_tp_nodejs:3000
     networks:
