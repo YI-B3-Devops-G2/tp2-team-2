@@ -26,7 +26,10 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: yarn install
+      # yarn install
+      - run:
+          name: Install Dependencies
+          command: yarn install
 
       - save_cache:
           paths:
@@ -34,4 +37,6 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # ESLint & Prettier
-      - run: yarn eslint
+      - run:
+          name: ESLint & Prettier
+          command: yarn eslint
