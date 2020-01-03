@@ -17,5 +17,16 @@ module.exports = {
     parserOptions: {
         ecmaVersion: 2018,
     },
-    rules: {},
+    rules: {
+        'no-console': 0,
+        'prettier/prettier': [
+            'error',
+            {
+                'trailingComma': 'es5',
+                'singleQuote': true,
+                'printWidth': 100
+            }
+        ]
+    },
+    plugins: ['prettier']
 }
