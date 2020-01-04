@@ -3,8 +3,8 @@ version: '3.1'
 services:
   nodejs:
     build:
-      context: ../nodeproject
-      dockerfile: nodejs/Dockerfile.dev
+      context: ../
+      dockerfile: Docker/nodejs/Dockerfile.dev
     container_name: api
     environment:
       - NODE_ENV=production
@@ -30,6 +30,8 @@ services:
       POSTGRES_DB: test
       PGDATA: /data/postgres
     restart: unless-stopped
+    volumes:
+      - ./postgres-persistent:/data/postgres
     networks:
       - sub_network_db
   redis:
@@ -39,10 +41,12 @@ services:
       - sub_network_db
   nginx:
     build:
-      context: nginx
-      dockerfile: nginx/Dockerfile
+      context: ./nginx
+      dockerfile: Dockerfile
     environment:
       - HOSTNAME=devops_tp_nodejs:3000
+    depends_on:
+      - nodejs
     networks:
       - sub_network_node
     ports:
