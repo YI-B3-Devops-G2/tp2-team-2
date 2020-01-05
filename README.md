@@ -78,5 +78,9 @@ You can easily edit your javascript files of the API, **nodemon** will restart t
 3. You can use `docker ps -a` and `docker rmi IMG_ID` to remove containers images from your computer
 
 
-<!-- # DockerHub
-link: https://... -->
+# DockerHub
+Our images are available on docker hub !
+They are automatically built and uploaded to the hub.
+If you want to be noticed when circleci update it, you can join the channel `circle-ci` on our [Slack](https://noname-eqi5393.slack.com/archives/CS8GLSSVA)
+[nginx](https://hub.docker.com/repository/docker/mrzyro/ynov-devops-tp2-team-2_nginx)
+[nodejs](https://hub.docker.com/repository/docker/mrzyro/ynov-devops-tp2-team-2_nodejs)
