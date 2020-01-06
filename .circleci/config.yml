@@ -49,6 +49,9 @@ jobs:
       - checkout
       - setup_remote_docker # Ask circleci new Docker Engine to build outside of container
       - run:
+          name: Create symlink to Dockerfile.prod
+          command: ln ./Docker/nodejs/Dockerfile.prod ./Docker/nodejs/Dockerfile
+      - run:
           name: Build Docker image
           command: docker build -t $DOCKERHUB_USERNAME/${PROJECT_NAME}:latest ./Docker/nodejs/ --compress --force-rm --no-cache --pull
       - run:
