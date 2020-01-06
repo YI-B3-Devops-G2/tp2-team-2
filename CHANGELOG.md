@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.2.1] - 2020-01-06
+### Changed
+- Change the image creation and push on docker hub.
+  Il n'y a plus que l'image nodejs qui est géré.
+
 ## [3.2.0] - 2020-01-05
 ### Added
 - Add auto push docker image with circle ci
