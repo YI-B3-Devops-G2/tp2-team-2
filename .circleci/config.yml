@@ -84,8 +84,8 @@ jobs:
           name: Load archived Docker image
           command: docker load -i /tmp/workspace/image.tar
       - run:
-          name: Display docker images
-          command: docker images -a
+          name: Setup image TAG
+          command: IMAGE_TAG="0.0.${CIRCLE_BUILD_NUM}"
       - run:
           name: Rename Docker image
           command: docker tag $DOCKERHUB_USERNAME/${PROJECT_NAME}:latest $DOCKERHUB_USERNAME/${PROJECT_NAME}:$IMAGE_TAG
