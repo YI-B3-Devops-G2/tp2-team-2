@@ -84,8 +84,11 @@ jobs:
           name: Load archived Docker image
           command: docker load -i /tmp/workspace/image.tar
       - run:
+          name: Display docker images
+          command: docker images -a
+      - run:
           name: Rename Docker image
-          command: docker tag $DOCKERHUB_USERNAME/${PROJECT_NAME} $DOCKERHUB_USERNAME/${PROJECT_NAME}:$IMAGE_TAG
+          command: docker tag $DOCKERHUB_USERNAME/${PROJECT_NAME}:latest $DOCKERHUB_USERNAME/${PROJECT_NAME}:$IMAGE_TAG
       - run:
           name: Connect to Docker Hub
           command: echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
