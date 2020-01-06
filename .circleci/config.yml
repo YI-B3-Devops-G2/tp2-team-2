@@ -7,6 +7,8 @@ executors:
   docker-publisher:
     environment:
       PROJECT_NAME: ynov-devops-tp2-team-2-api
+      IMAGE_NAME: $DOCKERHUB_USERNAME/$DOCKERHUB_PASS
+      IMAGE_TAG: ${CIRCLE_TAG/v/''}
     docker:
       - image: circleci/buildpack-deps:stretch
   docker-runner:
@@ -48,10 +50,10 @@ jobs:
           command: ln ./Docker/nodejs/Dockerfile.prod ./Dockerfile
       - run:
           name: Build Docker image
-          command: docker build -t $DOCKERHUB_USERNAME/${PROJECT_NAME}:latest . --compress --force-rm --no-cache --pull
+          command: docker build -t $IMAGE_NAME:latest . --compress --force-rm --no-cache --pull
       - run:
           name: Archive Docker image
-          command: docker save -o ./image.tar $DOCKERHUB_USERNAME/${PROJECT_NAME}:latest
+          command: docker save -o ./image.tar $IMAGE_NAME
       - persist_to_workspace:
           root: .
           paths:
@@ -71,7 +73,7 @@ jobs:
   #         name: Publish image to Docker Hub
   #         command: |
   #           echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-  #           docker push $DOCKERHUB_USERNAME/${PROJECT_NAME}:latest
+  #           docker push $IMAGE_NAME
 
   ## new JOB !
   publish-tag:
@@ -84,28 +86,31 @@ jobs:
           name: Load archived Docker image
           command: docker load -i /tmp/workspace/image.tar
       - run:
-          name: Setup image TAG
-          command: IMAGE_TAG="0.0.${CIRCLE_BUILD_NUM}"
+          name: View image TAG
+          command: echo $IMAGE_TAG
+      - run:
+          name: View image NAME
+          command: echo $IMAGE_NAME
+      - run:
+          name: View Docker images
+          command: docker images -a
       - run:
           name: Rename Docker image
-          command: docker tag $DOCKERHUB_USERNAME/${PROJECT_NAME}:latest $DOCKERHUB_USERNAME/${PROJECT_NAME}:$IMAGE_TAG
+          command: docker tag $IMAGE_NAME:latest $IMAGE_NAME:$IMAGE_TAG
       - run:
           name: Connect to Docker Hub
           command: echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
       - run:
           name: Push image to Docker Hub
           command: | 
-            docker push $DOCKERHUB_USERNAME/${PROJECT_NAME}:latest
-            docker push $DOCKERHUB_USERNAME/${PROJECT_NAME}:$IMAGE_TAG
+            docker push $IMAGE_NAME
+            docker push $IMAGE_NAME:$IMAGE_TAG
 
 workflows:
   version: 2
   testing-project:
     jobs:
       - lint-code:
-          filters:
-            branches:
-              only: master
       # - build-image:
       #     requires:
       #       - lint-code
