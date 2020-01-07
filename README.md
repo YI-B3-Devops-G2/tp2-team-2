@@ -83,4 +83,4 @@ Our images are available on docker hub !
 They are automatically built and uploaded to the hub.
 If you want to be noticed when circleci update it, you can join the channel `circle-ci` on our [Slack](https://noname-eqi5393.slack.com/archives/CS8GLSSVA)
 
-[nodejs](https://hub.docker.com/repository/docker/mrzyro/ynov-devops-tp2-team-2_nodejs)
+[nodejs](https://hub.docker.com/repository/docker/mrzyro/ynov-devops-tp2-team-2-api)
