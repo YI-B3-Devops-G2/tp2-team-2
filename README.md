@@ -7,7 +7,7 @@ Team 2
 mail: julien.seixas@ynov.com
 github _username: [MrZyr0](https://github.com/MrZyr0)
 ---
-mail: prenom2.nom2@ynov.com
+mail: maxence.mottard@ynov.com
 github _username: [MaxenceMottard](https://github.com/MaxenceMottard)
 ---
 professor : [@aegirops](https://github.com/aegirops)
